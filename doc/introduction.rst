@@ -7,8 +7,7 @@ Pygame Zero教程
 创建窗口
 -----------------
 
-First, create an empty file called ``intro.py``.
-首先，新建一个python空白文件，并保存为``intro.py``。
+首先，新建一个python空白文件，并保存为 ``intro.py``。
 
 运行一下命令来验证文件可以正常运行并创建一个窗口 ::
 
@@ -19,14 +18,14 @@ Pygame Zero所有设置都是默认可选，所以一个空的文件也是一个
 好神奇有木有！
 
 
-单击窗口的关闭按钮或者按``Ctrl+Q``(``⌘-Q`` on Mac)快捷键退出游戏。如果游戏卡住了，
-你可以在终端窗口按```Ctrl+C``快捷键。
+单击窗口的关闭按钮或者按 ``Ctrl+Q``(``⌘-Q`` on Mac)快捷键退出游戏。如果游戏卡住了，
+你可以在终端窗口按 ```Ctrl+C``快捷键。
 
 绘制窗口的背景
 --------------------
 
 
-然后，让我们添加一个:func:`draw` 函数并且设置窗口的大小。每当需要刷新(重绘)窗口的时候，
+然后，让我们添加一个 :func:`draw` 函数并且设置窗口的大小。每当需要刷新(重绘)窗口的时候，
 Pygame Zero就会调用这个函数。
 
 在 ``intro.py``,文件添加以下代码::
@@ -130,7 +129,7 @@ top-right corner. 注意修改``topright``属性来相对于右上角来修改�
         if alien.left > WIDTH:
             alien.right = 0
 
-Pygame Zero在每一帧都会调用:func:`update`函数。通过在每一帧让外星人移动很小的像素数，
+Pygame Zero在每一帧都会调用 :func:`update`函数。通过在每一帧让外星人移动很小的像素数，
 外星人就会在屏幕上从左向右滑过。一旦外星人左侧的坐标大于窗口的宽度，就让外星人回到左侧
 重新向右滑动。
 
@@ -214,7 +213,7 @@ Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义
 游戏能够继续运行和播放动画。实际上我们需要从``on_mouse_down``返回，然后让游戏在切换
 外星人的造型之后还能够继续运行，让``draw()`` 和 ``update()``继续跑。
 
-这可难不倒Pygame Zero，因为我们有一个内置的:class:`Clock`，可以让函数延时执行。
+这可难不倒Pygame Zero，因为我们有一个内置的 :class:`Clock`，可以让函数延时执行。
 
 首先，让我们重构也就是从新写代码。我们定一个设置外星人手上和返回普通造型的函数::
 
@@ -231,8 +230,8 @@ Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义
     def set_alien_normal():
         alien.image = 'alien'
 
- 运行代码跟之前没啥区别``set_alien_normal()``并没有被调用。但是我们可以用时钟类
- 修改 ``set_alien_hurt()`` 方法，这样``set_alien_normal()``就可以延迟一段时间被调用了::
+运行代码跟之前没啥区别``set_alien_normal()``并没有被调用。但是我们可以用时钟类
+修改 ``set_alien_hurt()`` 方法，这样``set_alien_normal()``就可以延迟一段时间被调用了::
 
     def set_alien_hurt():
         alien.image = 'alien_hurt'
@@ -255,4 +254,4 @@ Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义
 
 也许你继续完善游戏，可以记录游戏的得分，或者让外星人alien移动的更加诡异。
 
-有许多特性让Pygame Zero易于使用。访问:doc:`内置对象<builtins>`学习如何使用其他API
+有许多特性让Pygame Zero易于使用。访问 :doc:`内置对象<builtins>`学习如何使用其他API
