@@ -15,4 +15,4 @@
 树莓派
 ~~~~~~~~~~~~~~~
 
-pgzero从2015年9月份Raspbian Jessie发布以来默认安装在树莓派的系统
+pgzero从2015年9月份Raspbian Jessie发布以来默认安装在树莓派的系统。
