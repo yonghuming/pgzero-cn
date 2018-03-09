@@ -16,29 +16,31 @@ Pygame Zero可以让人们轻松无障碍创建游戏。
 .. toctree::
     :maxdepth: 2
 
-    introduction
-    from-scratch
+    简介 <introduction>
+    从Scratch到Python <from-scratch>
 
 .. This one is not yet complete
-.. learn-programming
-.. flappy-bird
+.. 学习编程 <learn-programming>
+.. flappy-bird <flappy-bird>
 
-Reference
+Pygame Zero参考
 ---------
 
 .. toctree::
     :maxdepth: 3
 
-    hooks
-    builtins
+    事件钩子hooks <hooks>
+    Pgzero内置模块 <builtins>
 
-User Guide
+用户指引
 ----------
 
 .. toctree::
     :maxdepth: 2
 
-    installation
-    ide-mode
-    contributing
-    changelog
+    安装教程 <installation>
+    编辑器模式 <ide-mode>
+    参与开源项目 <contributing>
+    更新日志 <changelog>
+
+网易少儿编程郎郎老师提供翻译
