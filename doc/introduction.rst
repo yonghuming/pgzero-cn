@@ -252,5 +252,5 @@ Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义
 
 也许你继续完善游戏，可以记录游戏的得分，或者让外星人alien移动的更加诡异。
 
-有许多特性让Pygame Zero易于使用。访问  :doc:`内置对象<builtins>`  学习如何使用其他API。
-网易少儿编程教研组提供翻译。欢迎访问 `网易卡搭 <https://kada.163.com>`  以及 `网易极客战记 <https://codecombat.163.com>`
+有许多特性让Pygame Zero易于使用。访问  :doc:`内置对象<builtins>`_static  学习如何使用其他API。
+网易少儿编程教研组提供翻译。欢迎访问 `网易卡搭 <https://kada.163.com>`_  以及 `网易极客战记 <https://codecombat.163.com>`
