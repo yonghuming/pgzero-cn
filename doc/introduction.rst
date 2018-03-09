@@ -18,8 +18,8 @@ Pygame Zero所有设置都是默认可选，所以一个空的文件也是一个
 好神奇有木有！
 
 
-单击窗口的关闭按钮或者按 ``Ctrl+Q``(``⌘-Q`` on Mac)快捷键退出游戏。如果游戏卡住了，
-你可以在终端窗口按 ```Ctrl+C``快捷键。
+单击窗口的关闭按钮或者按 ``Ctrl+Q`` ( ``⌘-Q`` on Mac)快捷键退出游戏。如果游戏卡住了，
+你可以在终端窗口按 ``Ctrl+C`` 快捷键。
 
 绘制窗口的背景
 --------------------
@@ -45,7 +45,7 @@ Pygame Zero就会调用这个函数。
 
 ``screen`` 是内置的代表窗口显示的类. screen类有
 :ref:`很多负责绘制精灵和图形的函数<screen>`. 
-调用``screen.fill()`` 方法可以用指定一个颜色元组
+调用 ``screen.fill()`` 方法可以用指定一个颜色元组
 ``(red, green, blue)`` ，然后用纯色填充窗口. ``(128, 0, 0)`` 是暗红色. 试着
 改变rgb颜色值，然后查看代码运行效果。
 
@@ -68,13 +68,13 @@ Pygame Zero就会调用这个函数。
 .. tip::
 
     你可以在 `kenney.nl
-    <https://kenney.nl/assets?q=2d>`_网站找到包括这张图在内的大量免费精灵图片. 这张
+    <https://kenney.nl/assets?q=2d>`_ 网站找到包括这张图在内的大量免费精灵图片. 这张
     图是 `Platformer Art Deluxe pack
-    <https://kenney.nl/assets/platformer-art-deluxe>`_的一部分.
+    <https://kenney.nl/assets/platformer-art-deluxe>`_ 的一部分.
 
 
-只有将图片保存在正确的路径Pygame Zero才能够加载图片。新建一个``images``目录，并且把
-图片另存为``alien.png``。文件夹和文件名都是小写，虽然windows不区分文件名的大小写，但是
+只有将图片保存在正确的路径Pygame Zero才能够加载图片。新建一个 ``images`` 目录，并且把
+图片另存为 ``alien.png`` 。文件夹和文件名都是小写，虽然windows不区分文件名的大小写，但是
 linux和OSX是区分，不然就会陷入一个跨平台兼容性的陷阱。
 
 
@@ -91,7 +91,7 @@ linux和OSX是区分，不然就会陷入一个跨平台兼容性的陷阱。
 ``images/`` 目录是Pygame Zero查找代码中图片的标准默认位置。
 
 
-内置类:class:`Actor`用来代表一个你绘制到屏幕的图形。
+内置类 :class:`Actor` 用来代表一个你绘制到屏幕的图形。
 
 让我们来定义一个在屏幕上显示的图形，修改 ``intro.py`` 文件加载图片::
 
@@ -106,16 +106,14 @@ linux和OSX是区分，不然就会陷入一个跨平台兼容性的陷阱。
         alien.draw()
 
 
-哇塞，外星人显示在屏幕上了。通过把字符串 ``'alien'``作为参数传递给``Actor``类，Pygame
+哇塞，外星人显示在屏幕上了。通过把字符串 ``'alien'`` 作为参数传递给 ``Actor`` 类，Pygame
 Zero自动加载了外星人精灵，并且图片具有位置和大小属性。这样我们就可以根据外星人alien的告诉
-设置窗口的高度属性``HEIGHT``。
-
- ``alien.draw()``方法把外星人精灵绘制到屏幕上的当前位置。
+设置窗口的高度属性 ``HEIGHT`` 。 ``alien.draw()`` 方法把外星人精灵绘制到屏幕上的当前位置。
 
 移动外星人
 ----------------
 
-我们先让外星人在舞台的外面; 修改``alien.pos`` 一行代码如下::
+我们先让外星人在舞台的外面; 修改 ``alien.pos`` 一行代码如下::
 
     alien.topright = 0, 10
 
@@ -129,14 +127,14 @@ top-right corner. 注意修改``topright``属性来相对于右上角来修改�
         if alien.left > WIDTH:
             alien.right = 0
 
-Pygame Zero在每一帧都会调用 :func:`update`函数。通过在每一帧让外星人移动很小的像素数，
+Pygame Zero在每一帧都会调用 :func:`update` 函数。通过在每一帧让外星人移动很小的像素数，
 外星人就会在屏幕上从左向右滑过。一旦外星人左侧的坐标大于窗口的宽度，就让外星人回到左侧
 重新向右滑动。
 
 处理鼠标单击事件
 ---------------
 接下来，我们让游戏在单击鼠标的时候，做点不一样的东西。为了实现这个目标我们需要定义
-一个:func:`on_mouse_down`函数。在文件下方添加以下代码::
+一个 :func:`on_mouse_down` 函数。在文件下方添加以下代码::
 
     def on_mouse_down(pos):
         if alien.collidepoint(pos):
@@ -147,9 +145,9 @@ Pygame Zero在每一帧都会调用 :func:`update`函数。通过在每一帧让
 
 运行游戏，并尝试多次单击外星人角色。
 
-Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义的函数没有``pos``参数，Pygame
-在调用函数的时候就不会传递位置参数。``on_mouse_down``方法还有一个``button``按钮参数，
-代表单击的鼠标的那个键。因此我们也可以这样定义``on_mouse_down``函数::
+Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义的函数没有 ``pos`` 参数，Pygame
+在调用函数的时候就不会传递位置参数。``on_mouse_down`` 方法还有一个 ``button`` 按钮参数，
+代表单击的鼠标的那个键。因此我们也可以这样定义 ``on_mouse_down`` 函数::
 
     def on_mouse_down():
         print("You clicked!")
@@ -169,7 +167,7 @@ Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义
 
 * `alien_hurt.png <_static/alien_hurt.png>`_ -保存图片 ``alien_hurt.png``
   到 ``images`` 目录.
-* `eep.wav <_static/eep.wav>`_ - 新建一个叫做 ``sounds``目录，然后保存``eep.wav``到声音目录。
+* `eep.wav <_static/eep.wav>`_ - 新建一个叫做 ``sounds`` 目录，然后保存 ``eep.wav`` 到声音目录。
 
 这时候项目如下图所示:
 
@@ -183,8 +181,8 @@ Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义
     │   └── eep.wav
     └── intro.py
 
-``sounds/``是Pygame Zero查找声音文件的默认标准目录。
-现在让我们用新的图片和声音资源改写 ``on_mouse_down`` 函数::
+``sounds/`` 是Pygame Zero查找声音文件的默认标准目录。
+现在让我们用新的图片和声音资源改写  ``on_mouse_down`` 函数::
 
     def on_mouse_down(pos):
         if alien.collidepoint(pos):
@@ -199,7 +197,7 @@ Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义
 
 时钟函数
 -----
-如果出了游戏编程之外你对python非常熟悉，你就会知道用``time.sleep()`` 来插入延时。
+如果出了游戏编程之外你对python非常熟悉，你就会知道用  ``time.sleep()`` 来插入延时。
 你可以像下面这样写代码::
 
     def on_mouse_down(pos):
@@ -209,11 +207,11 @@ Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义
             time.sleep(1)
             alien.image = 'alien'
 
-但是不行的是，在游戏中这样写是不合适的。 ``time.sleep()``阻塞了所有的活动。我们希望
-游戏能够继续运行和播放动画。实际上我们需要从``on_mouse_down``返回，然后让游戏在切换
-外星人的造型之后还能够继续运行，让``draw()`` 和 ``update()``继续跑。
+但是不行的是，在游戏中这样写是不合适的。 ``time.sleep()`` 阻塞了所有的活动。我们希望
+游戏能够继续运行和播放动画。实际上我们需要从  ``on_mouse_down`` 返回，然后让游戏在切换
+外星人的造型之后还能够继续运行，让  ``draw()`` 和  ``update()`` 继续跑。
 
-这可难不倒Pygame Zero，因为我们有一个内置的 :class:`Clock`，可以让函数延时执行。
+这可难不倒Pygame Zero，因为我们有一个内置的 :class:`Clock` ，可以让函数延时执行。
 
 首先，让我们重构也就是从新写代码。我们定一个设置外星人手上和返回普通造型的函数::
 
@@ -230,15 +228,15 @@ Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义
     def set_alien_normal():
         alien.image = 'alien'
 
-运行代码跟之前没啥区别``set_alien_normal()``并没有被调用。但是我们可以用时钟类
-修改 ``set_alien_hurt()`` 方法，这样``set_alien_normal()``就可以延迟一段时间被调用了::
+运行代码跟之前没啥区别  ``set_alien_normal()``  并没有被调用。但是我们可以用时钟类
+修改 ``set_alien_hurt()`` 方法，这样  ``set_alien_normal()``  就可以延迟一段时间被调用了::
 
     def set_alien_hurt():
         alien.image = 'alien_hurt'
         sounds.eep.play()
         clock.schedule_unique(set_alien_normal, 1.0)
 
-``clock.schedule_unique()``可以让``set_alien_normal()`` 方法在
+``clock.schedule_unique()``  可以让  ``set_alien_normal()`` 方法在
  ``1.0`` 秒后被调用. ``schedule_unique()`` 同时防止同一
 函数在快速单击的时候被多次安排调用.
 
@@ -254,4 +252,5 @@ Pygame Zero可以非常聪明的处理你对于函数的调用。如果你定义
 
 也许你继续完善游戏，可以记录游戏的得分，或者让外星人alien移动的更加诡异。
 
-有许多特性让Pygame Zero易于使用。访问 :doc:`内置对象<builtins>`学习如何使用其他API
+有许多特性让Pygame Zero易于使用。访问  :doc:`内置对象<builtins>`  学习如何使用其他API。
+网易少儿编程教研组提供翻译。欢迎访问 `网易卡搭 <https://kada.163.com>`  以及 `网易极客战记 <https://codecombat.163.com>`
