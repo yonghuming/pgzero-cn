@@ -10,35 +10,35 @@ Pygame Zero可以让人们轻松无障碍创建游戏。
 它是出于教育目的开发的，所以老师们可以用pygame zero讲授基本的编程知识，同时又不需
 要解释复杂的Pygame的API和事件循环
 
-使用教程
+课程
 -------
 
 .. toctree::
     :maxdepth: 2
 
-    入门及简介
+    introduction
     from-scratch
 
-.. 未完待续
-.. 学习编程
+.. This one is not yet complete
+.. learn-programming
 .. flappy-bird
 
-Pygame Zero参考手册
+Reference
 ---------
 
 .. toctree::
     :maxdepth: 3
 
-    事件钩子hooks
-    内置模块builtins
+    hooks
+    builtins
 
-用户使用指南
+User Guide
 ----------
 
 .. toctree::
     :maxdepth: 2
 
-    安装指南
-    编辑器模式
-    参与开源项目
-    更新日志
+    installation
+    ide-mode
+    contributing
+    changelog
