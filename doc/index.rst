@@ -1,5 +1,3 @@
-
-
 欢迎使用Pygame Zero
 ======================
 
@@ -17,13 +15,15 @@ Pygame Zero可以让人们轻松无障碍创建游戏。
 
     简介 <introduction>
     从Scratch到Python <from-scratch>
+    学习编程 <learn-programming>
+    
 
 .. This one is not yet complete
 .. 学习编程 <learn-programming>
 .. flappy-bird <flappy-bird>
 
 Pygame Zero参考
----------
+---------------------------
 
 .. toctree::
     :maxdepth: 3
