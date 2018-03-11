@@ -9,7 +9,7 @@ The Pygame Zero project is hosted on GitHub:
 
 .. _report-issue:
 
-Reporting an bug or request
+找Bug或者提需求
 ---------------------------
 
 You can report bugs, or request features that you think should be in Pygame
@@ -28,7 +28,7 @@ Here are some things to bear in mind before you do this:
 .. _`Github issue tracker`: https://github.com/lordmauve/pgzero/issues
 
 
-How to do a pull request
+如何在Github上提P/R
 ------------------------
 
 You can make changes to Pygame Zero by creating a pull request.
@@ -76,8 +76,7 @@ version:
 
 .. _`Github page for Pygame Zero`: https://github.com/lordmauve/pgzero
 
-
-Development installation
+安装开发版本
 ------------------------
 
 It's possible to create a locally-editable install using pip. From the root directory of the checked out source, run::
@@ -95,7 +94,7 @@ For example:
    python3 -m pgzero examples/basic/demo1.py
 
 
-How to run tests
+如何运行测试
 ----------------
 
 The tests can be run with

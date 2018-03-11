@@ -1,3 +1,8 @@
+.. PGZero documentation master file, created by
+   sphinx-quickstart on Tue Apr 14 16:09:10 2015.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+   
 欢迎使用Pygame Zero
 ======================
 
@@ -5,7 +10,7 @@
 Pygame Zero可以让人们轻松无障碍创建游戏。
 
 它是出于教育目的开发的，所以老师们可以用pygame zero讲授基本的编程知识，同时又不需
-要解释复杂的Pygame的API和事件循环
+要解释复杂的Pygame的API和事件循环。
 
 课程
 -------
@@ -15,8 +20,8 @@ Pygame Zero可以让人们轻松无障碍创建游戏。
 
     简介 <introduction>
     从Scratch到Python <from-scratch>
-    学习编程 <learn-programming>
-    
+    用Pygame Zero学习编程 <learn-programming>
+
 
 .. This one is not yet complete
 .. 学习编程 <learn-programming>
@@ -42,4 +47,4 @@ Pygame Zero参考
     参与开源项目 <contributing>
     更新日志 <changelog>
 
-网易少儿编程郎郎老师提供翻译
+网易少儿编程郎郎老师提供翻译,微信ilangxm,有疑问可以添加好友备注pygame zero。

@@ -1,4 +1,4 @@
-Built-in Objects
+内置对象
 ================
 
 Pygame Zero provides useful built-in objects to help you make games easily.
@@ -6,7 +6,7 @@ Pygame Zero provides useful built-in objects to help you make games easily.
 
 .. _screen:
 
-Screen
+屏幕
 ------
 
 .. toctree::
@@ -82,8 +82,8 @@ draw images to the screen ("blit" them).
 
 .. _rect:
 
-Rect
-----
+矩形
+------
 
 The `Pygame Rect`_ class is available as a built in. This can be used in a
 variety of ways, from detecting clicks within a region to drawing a box onto
@@ -101,7 +101,7 @@ For example, you can draw a box with::
 .. _`Pygame Rect`: https://www.pygame.org/docs/ref/rect.html
 
 
-Resource Loading
+资源加载
 ----------------
 
 The ``images`` and ``sounds`` objects can be used to load images and sounds
@@ -125,7 +125,7 @@ These will not work::
     my-cat.png
     sam's dog.png
 
-Images
+图形
 ''''''
 
 Pygame Zero can load images in ``.png``, ``.gif``, and ``.jpg`` formats. PNG is
@@ -159,7 +159,7 @@ contain lowercase latin letters, numbers and underscores. This is to prevent
 compatibility problems when your game is played on a different operating system
 that has different case sensitivity.
 
-Image Surfaces
+图形表面
 ''''''''''''''
 
 You can also load images from the ``images`` directory using the ``images``
@@ -201,7 +201,7 @@ to query the size of the image in pixels:
             Rect((0, 0), image.get_size())
 
 
-Sounds
+声音
 ''''''
 
 Pygame Zero can load sounds in ``.wav`` and ``.ogg`` formats. WAV is great for
@@ -253,7 +253,7 @@ music is loaded.
 
 .. _music:
 
-Music
+音乐
 -----
 
 .. versionadded:: 1.1
@@ -346,7 +346,7 @@ can use the :func:`on_music_end() hook <on_music_end>` to do something when the
 music ends - for example, to pick another track at random.
 
 
-Clock
+时钟
 -----
 
 Often when writing a game, you will want to schedule some game event to occur
@@ -431,7 +431,7 @@ will have to keep a reference to the object.
 
 .. _actor:
 
-Actors
+角色
 ------
 
 Once you have many images moving around in a game it can be convenient to have
@@ -466,7 +466,7 @@ two actors have collided.
 .. __: https://www.pygame.org/docs/ref/rect.html#pygame.Rect.colliderect
 
 
-Positioning Actors
+角色定位
 ''''''''''''''''''
 
 If you assign a new value to one of the position attributes then the actor will
@@ -506,7 +506,7 @@ positioned in the top-left corner (equivalent to ``topleft=(0, 0)``).
 
 .. _anchor:
 
-Anchor point
+定位中心点
 ''''''''''''
 
 Actors have an "anchor position", which is a convenient way to position the
@@ -526,7 +526,7 @@ be floats or the strings ``left``, ``center``/``middle``, ``right``, ``top`` or
 
 .. _rotation:
 
-Rotation
+旋转
 ''''''''
 
 The ``.angle`` attribute of an Actor controls the rotation of the sprite, in
@@ -565,7 +565,7 @@ Remember that angles loop round, so 0 degrees == 360 degrees == 720 degrees.
 Likewise -180 degrees == 180 degrees.
 
 
-Distance and angle to
+距离 和 到...的角度
 '''''''''''''''''''''
 
 Actors have convenient methods for calculating their distance or angle to other
@@ -590,7 +590,7 @@ Actors or ``(x, y)`` coordinate pairs.
     * Down is -90 degrees.
 
 
-The Keyboard
+按键处理
 ------------
 
 You probably noticed that we used the ``keyboard`` in the above code.
@@ -627,7 +627,7 @@ not constants.
         keyboard[keys.SPACE]  # True if the space bar is pressed
 
 
-Animations
+动画
 ----------
 
 You can animate most things in pygame using the builtin ``animate()``. For
@@ -695,7 +695,7 @@ The ``animate()`` function returns an ``Animation`` instance:
         ``stop()`` is called. This function takes no arguments.
 
 
-Tone Generator
+音调生成器
 --------------
 
 Pygame Zero can play tones using a built-in synthesizer.

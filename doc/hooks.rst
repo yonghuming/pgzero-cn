@@ -1,14 +1,13 @@
-Event Hooks
+事件钩子
 ===========
 
-Pygame Zero will automatically pick up and call event hooks that you define.
-This approach saves you from having to implement the event loop machinery
-yourself.
+Pygame Zero会自动识别并调用你定义的事件钩子.这种机制把你从自己实现事件循环机制中
+拯救出来.
 
-Game Loop Hooks
+事件循环钩子
 ---------------
 
-A typical game loop looks a bit like this::
+典型事件循环钩子如下::
 
     while game_has_not_ended():
         process_input()
@@ -18,31 +17,30 @@ A typical game loop looks a bit like this::
 Input processing is a bit more complicated, but Pygame Zero allows you to
 easily define the ``update()`` and ``draw()`` functions within your game
 module.
+输入处理要更复杂一些, 但是在Pygame Zero可以便捷的定义 ``update()`` he  ``draw()`` 函数.
 
 .. function:: draw()
 
     Called by Pygame Zero when it needs to redraw your game window.
+    需要重绘游戏窗口时Pygame Zero调用的函数.
 
-    ``draw()`` must take no arguments.
+    ``draw()`` 必须没有任何参数.
 
-    Pygame Zero attempts to work out when the game screen needs to be redrawn
-    to avoid redrawing if nothing has changed. On each step of the game loop
-    it will draw the screen in the following situations:
+    Pygame Zero尝试实现当需要重绘的时候工作, 如果没有变化避免重绘节约资源.每个游戏
+    循环在下列情形下会重绘屏幕:
 
-    * If you have defined an ``update()`` function (see below).
-    * If a clock event fires.
-    * If an input event has been triggered.
+    * 定义了 ``update()`` 函数
+    * 如果有时钟时间
+    * 如果触发了输入事件
 
-    One way this can catch you out is if you attempt to modify or animate
-    something within the draw function. For example, this code is wrong: the
-    alien is not guaranteed to continue moving across the screen::
+    如果你尝试在draw函数修改或者让某些元素动起来就会让你很抓狂.比如,下列代码是挫的:
+    alien不一定会在屏幕上移动的,也就是修改应该放到update函数::
 
         def draw():
             alien.left += 1
             alien.draw()
 
-    The correct code uses ``update()`` to modify or animate things and draw
-    simply to paint the screen::
+    正确代码是用 ``update()`` 方法来修改或者让元素动起来,draw函数仅仅是用来绘制屏幕
 
         def draw():
             alien.draw()
@@ -52,15 +50,15 @@ module.
 
 .. function:: update() or update(dt)
 
-    Called by Pygame Zero to step your game logic. This will be called
-    repeatedly, 60 times a second.
+    Pygame Zero调用来一步步实现你的游戏逻辑.会重复调用, 60次/秒.
 
-    There are two different approaches to writing an update function.
+    有两种编写update函数的方式.
 
     In simple games you can assume a small time step (a fraction of a second)
     has elapsed between each call to ``update()``. Perhaps you don't even care
     how big that time step is: you can just move objects by a fixed number of
     pixels per frame (or accelerate them by a fixed constant, etc.)
+    
 
     A more advanced approach is to base your movement and physics calculations
     on the actual amount of time that has elapsed between calls. This can give
@@ -74,7 +72,7 @@ module.
     movement calculations.
 
 
-Event Handling Hooks
+事件处理钩子
 --------------------
 
 Similar to the game loop hooks, your Pygame Zero program can respond to input
@@ -169,7 +167,7 @@ To handle mouse drags, use code such as the following::
 
 .. _buttons-and-keys:
 
-Buttons and Keys
+鼠标按键和键盘
 ''''''''''''''''
 
 Built-in objects ``mouse`` and ``keys`` can be used to determine which buttons

@@ -1,68 +1,60 @@
-Learn programming with Pygame Zero
+通过Pygame Zero学习编程
 ==================================
 
-Let's start at the beginning. This tutorial is for those with no programming
-experience whatsoever. We're going to learn to make a simple but perhaps fun
-game.
+万丈高楼平地起.本教程面相任何零编程经验人员.接下来我们会做一个简单但非常有趣的游戏.
 
-I'm going to assume Pygame Zero is installed already and you know how to use
-a text editor.
+我假设你安装了Pygame Zero, 并且晓得如何使用文本编辑器.
 
-Creating a blank file
-=====================
+新建一个空白文件
+----------------
 
-First, create an empty file called "fishfrenzy.py" by creating a new, empty
-file in your editor and saving it as "fishfrenzy.py" in a new directory.
+首先,通过你的编辑器新建一个名为 "fishfrenzy.py" 的空白文件并把 "fishfrenzy.py" 
+保存到新的目录.
 
-Verify that this runs and creates a blank window by running ::
+通过运行下面的命令确认空白文件运行并且创建了空白窗口::
 
     cd the_directory_you_created
     pgzrun fishfrenzy.py
 
-How you run this may depend on your editor, shell, or loads of other things.
+\如何运行取决于你的编辑器,shell或者你加载的其他插件.
 
-If this step failed, then you may be in the wrong directory, or Python or
-Pygame Zero may not be installed correctly - or hundreds of other things. In
-many ways this is the hardest step, because it's beyond the scope of this
-tutorial to explain things, given how many different configurations there are:
-what operating system you are running, what version of Python, what version of
-Pygame Zero.
+如果运行失败,有可能是因为你的文件路径错了, Python或者Pygame Zero没有正确安装,以及各种
+千奇百怪的原因.从某种意义上讲,第一步是最难迈出的,但是这已经超过了这篇教程的范围,取决于
+很多不同配置,比如你的操作系统, 你python的版本,你Pygame的版本等等.
 
-But with any luck you can get it to work! If you see a blank "Pygame Zero Game"
-window, we're good to move on.
+如果你的代码运行那你的运气可真不错!如果你看到一个空白的 "Pygame Zero Game" 创客,我们就
+就可以进行下一步了.
 
-Really stuck?
+真的是运气吗?
 -------------
 
-You can get into a support chat room by going to
+你可以在下面的聊天室获得帮助,或者添加微信ilangxm, 备注pygame zero我会拉你入群
 
 http://webchat.freenode.net?randomnick=1&channels=%23%23learnpython&uio=d4
 
-Functions
-=========
+函数
+----------
 
-Let's begin for real.
+让我们正式开始吧.
 
-In most programming languages we program by defining a series of steps that the
-computer will carry out for us, like a **recipe**. In bakery, you might have
-a recipe like:
+对大部分大部分编程语言来,编程就是定义一系列计算机可以执行的步骤,就像是 **菜谱**. 在烹饪
+里,你可能有下列菜谱:
 
-    **Cake Recipe**
+    **蛋糕菜谱**
 
-    * Add flour to the bowl
-    * Add sugar to the bowl
-    * Add butter to the bowl
-    * Add an egg to the bowl
-    * Whisk the ingredients
-    * Pour into a cake tin
-    * Bake it
+    * 碗里家店面
+    * 碗里加点糖
+    * 碗里加点奶油
+    * 碗里加一个鸡蛋
+    * 快速搅拌
+    * 把碗里的东东导入蛋糕模子
+    * 烘烤
 
-... and so on. (Don't try this recipe. I am not a chef.)
+... 等等,当然按照这个菜谱大概是做不出蛋糕的,因为我不是厨子啊
 
-A game among programmers is to imagine how this would look as a program in an
-imaginary computer that understood whatever instructions you could name (this
-is called **pseudocode** - because it looks like code, but it doesn't actually
-work). If we translated this recipe into Python, it would look like this::
+程序设计人员中的游戏就是如何把这些看做一个程序,并且在一个能够理解你定义的任意指令的
+虚拟计算机中运行.这叫做 **伪代码** 因为看起来像代码,但实际上不能运行.如果我们把菜谱
+翻译成Python程序,就会像这样::
 
     def cake_recipe():
         bowl.add(flour)
@@ -73,63 +65,57 @@ work). If we translated this recipe into Python, it would look like this::
         cake_tin.add(bowl.get_contents())
         bake(cake_tin)
 
-That's pretty similar, isn't it? We've had to spell the names of some of the
-words differently, but basically, each line of the program is equivalent to one
-line of the recipe - one "action".
+伪代码和Python代码很相似.虽然我们用一些特殊的方式拼写单词,但总体上Python和伪代码的每一
+行都是等价的 - 都是一个 "动作" 或者说 "行为" .
 
-The top line with ``def`` is defining a recipe called ``cake_recipe``, and all
-of the other lines are steps in the recipe. And in fact - because they all use
-parentheses - they refer to other recipes that the computer might know.
+第一行中的 ``def`` 定义了一个叫做 ``cake_recipe`` 的菜谱, 其他代码是菜谱的步骤.都用
+parentheses,表示他们只想计算机可能知道的其他菜谱.
 
-So, let's write a real recipe in Pygame Zero. In your editor, let's write a
-``draw`` recipe. Pygame Zero knows how to call a function called ``draw``::
+让我们用Pygame Zero写一个真正的食谱. 在你的编辑器里,让我们写一个 ``draw`` 食谱.Pygame
+可以正确的调用名为 ``draw`` 的函数::
+
 
     def draw():
         screen.clear()
+
         screen.draw.circle((400, 300), 30, (255, 255, 255))
 
-Run it with::
+用一下命令运行::
 
     pgzrun fishfrenzy.py
 
-Did it work? Do you see the circle? On my screen it looks like this:
+你的代码运行了吗? 看到一个圆圈没?我的电脑看上去是:
 
 .. image:: _static/grabs/circle.png
 
-If Pygame Zero didn't show a window, or showed a window that disappeared
-straight away, look at the error message it displayed:
+如果Pygame Zero没有创建窗口,或者出现了一个窗口然后闪退, 看下出现的错误提示:
 
-* ``SyntaxError`` - Probably means you are missing a parenthesis or your
-  indentation doesn't match mine. Note how each step of the function has to be
-  aligned with each other, but indented **more** than the ``def`` at the top.
-* ``AttributeError`` or ``NameError`` - You probably mispelled something.
-* ``TypeError`` - did you put some of the parentheses in the wrong places?
+* ``SyntaxError`` - 语法错误,意味着你可能漏掉了一个括号,或者缩进跟我的代码有区别.注意
+  函数的每一行必须对齐, 但是必须比顶部的 ``def`` 缩进 **多一些**
+* ``AttributeError`` or ``NameError`` - 属性或者名称错误, 你可能有拼写错误.
+* ``TypeError`` - 类型错误,是不是有的括号位置错了?
 
-If the window appears, but nothing happens, did you misspell "draw"? Or any of
-the numbers?
+如果窗口出现了,但是窗口啥都不显示,检查下 "draw" 是不是拼错了? 或者数字有没有写错?
 
-Check carefully if it doesn't work first time and you should be able to get it
-to work after a few attempts.
+如果代码一开始就不能运行,仔细检查下你的代码,多尝试几次代码就能正常运行了.
 
-So we created a recipe that includes two steps:
+我们定义了一个包含两个步骤的食谱:
 
-1. Clear the screen to black
-2. Draw a circle on the screen:
+1. 清空屏幕,让屏幕显示黑色
+2. 在屏幕上画个圈圈:
 
-    * At the middle ``(400, 300)``. These are coordinates for the center of the
-      circle, in pixels from the left then pixels from the top.
-    * Of radius ``30`` pixels.
-    * And draw it in white, which is written as three numbers, red, green and
-      blue: ``(255, 255, 255)``. White is an equal mix of red, green and blue,
-      and ``255`` is the most you can have.
+    * ``(400, 300)`` 是圆心坐标, 用距离屏幕左上角的坐标数表示.
+    * 半径是 ``30`` 像素
+    * 圆的轮廓是白色的,用仨数表示, 分别表示红绿蓝
+      的值 ``(255, 255, 255)``. 白色是红,绿和蓝的混合色. ``255`` 是颜色的最大值.
 
-You can play with all of these numbers.
+你可以 **尝试改变这三个值**,运行程序并查看效果.
 
 
-Diversion: Local and Global Variables
+进阶:本地和全局变量
 -------------------------------------
 
-Suppose we wrote the following code::
+建设我们写了如下代码::
 
     RED = 150, 0, 0
     GREEN = 0, 128, 0
@@ -145,21 +131,16 @@ Suppose we wrote the following code::
     def on_mouse_up():
         bg = RED
 
-In some languages, this would work: the screen would change to green
-when the mouse button was pressed, and change back to red when the button is
-released.
+有的语言中,这样写没有问题的: 当单击屏幕的时候屏幕是绿色,松开鼠标按钮,屏幕变成红色.
 
-This code doesn't work in Python. If you try it, you will not see the screen
-change to green. Why?
+但是在Python中是不行的.如果你试着运行这段代码,你就会发现屏幕不会变成绿色.为啥捏?
 
-When you assign with the ``=`` operator inside a function, as at line 10 (and
-line 13), you create a "local" variable called ``bg`` that exists only with the
-function. The ``bg`` we want to change is in the global scope. It's actually
-a very sensible feature; you don't want to
+当你在函数内部像第10行一样用 ``==`` 进行赋值操作的时候, 你就新建了一个仅仅在函数内部
+存在的bg变量. 我们想修改的 ``bg`` 是全局变量, 这实际上是一个非常明智的做法,你不想...
 
-The fix is to declare in ``on_mouse_down()`` and ``on_mouse_up()`` that we
-want to modify the global variable, not create a new local variable. We do
-this with the ``global`` statement. The correct code in Pygame Zero is::
+解决办法是在 ``on_mouse_down`` 和 ``on_mouse_up`` 函数中明确的表示我们是想修改全局
+变量,而不是新建一个本地变量. 我们用 ``global`` 声明来完成这个目标. 正确的Pygame Zero
+代码如下::
 
     RED = 150, 0, 0
     GREEN = 0, 128, 0
@@ -176,3 +157,5 @@ this with the ``global`` statement. The correct code in Pygame Zero is::
     def on_mouse_up():
         global bg
         bg = RED
+
+网易少儿编程郎郎老师翻译, 微信 ilangxm
