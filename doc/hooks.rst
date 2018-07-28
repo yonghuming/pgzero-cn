@@ -1,13 +1,13 @@
-事件钩子
+事件钩
 ===========
 
-Pygame Zero会自动识别并调用你定义的事件钩子.这种机制把你从自己实现事件循环机制中
+Pygame Zero会自动识别并调用你定义的事件钩.这种机制把你从自己实现事件循环机制中
 拯救出来.
 
-事件循环钩子
+事件循环钩
 ---------------
 
-典型事件循环钩子如下::
+典型事件循环钩如下::
 
     while game_has_not_ended():
         process_input()
@@ -72,7 +72,7 @@ module.
     movement calculations.
 
 
-事件处理钩子
+事件处理钩
 --------------------
 
 Similar to the game loop hooks, your Pygame Zero program can respond to input

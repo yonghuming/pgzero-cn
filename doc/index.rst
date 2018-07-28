@@ -46,5 +46,5 @@ Pygame Zero参考
     编辑器模式 <ide-mode>
     参与开源项目 <contributing>
     更新日志 <changelog>
-
-网易少儿编程郎郎老师提供翻译,微信ilangxm,有疑问可以添加好友备注pygame zero。
+	
+感谢网易少儿编程郎郎老师提供翻译,微信ilangxm,有疑问可以添加好友备注pygame zero ：）
