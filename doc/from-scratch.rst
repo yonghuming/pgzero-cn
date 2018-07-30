@@ -26,7 +26,7 @@ Pygame Zero版本的游戏包含了积分逻辑，但是为了更清晰对比二
 
 除了舞台背景之外，还有三个对象，小鸟，上方管道和下方管道
 
-对应的pygame Zero代码则是把这三个角色都设置为 ``Actors`` (中文是演员？角色？差不多意思吧)::
+对应的pygame Zero代码则是把这三个角色都设置为 ``Actors`` (表演者)::
 
    bird = Actor('bird1', (75, 200))
    pipe_top = Actor('top', anchor=('left', 'bottom'))
@@ -208,7 +208,7 @@ Scratch和Pygame Zero最大的不同在于:
 
 Many of the concepts available in Scratch can be translated directly into
 Pygame Zero.
-许多Scratch种的概念可以直接迁移到Pygame Zero中.
+许多Scratch中的概念可以直接迁移到Pygame Zero中.
 
 下面是一些对比:
 
