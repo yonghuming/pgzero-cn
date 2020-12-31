@@ -1,8 +1,10 @@
-Text Formatting
+文字格式
 ---------------
 
-The :ref:`screen`'s ``draw.text()`` method has a very rich set of methods for
-position and formatting of text. Some examples::
+The :ref:`screen`'s 的``draw.text()``方法可以指定文本的位置和格式。可以指定四个角
+或者中心点的坐标以及各个边中点的坐标，以及单独指定中心点以及各个角。还可以设置文本的
+颜色、字体、字体大小，不过字体文件要保存在当前 python 文件所在目录的 fonts 目录中，
+才可以正常的设置字体。示例如下 ::
 
     screen.draw.text("Text color", (50, 30), color="orange")
     screen.draw.text("Font name and size", (20, 100), fontname="Boogaloo", fontsize=60)
@@ -17,46 +19,45 @@ position and formatting of text. Some examples::
         midbottom=(427,460), width=360, fontname="Boogaloo", fontsize=48,
         color="#AAFF00", gcolor="#66AA00", owidth=1.5, ocolor="black", alpha=0.8)
 
-In its simplest usage, ``screen.draw.text`` requires the string you want to
-draw, and the position. You can either do this by passing coordinates as the
-second argument (which is the top left of where the text will appear), or use
-the positioning keyword arguments (described later)::
+``screen.draw.text`` 最简单的用法只需要提供需要显示的文本以及文本的坐标，不过文本
+坐标的方式除了指定左上角的坐标，还有很多其他的方式。除了通过第二个参数指定文本的位置，
+还可以通过关键字参数设置文本的位置，后面会详细介绍。::
 
     screen.draw.text("hello world", (20, 100))
 
-``screen.draw.text`` takes many optional keyword arguments, described below.
+``screen.draw.text`` 有很多可选的位置参数，下面详细介绍。
 
-Font name and size
+设置字体和字号
 ''''''''''''''''''
 
-Fonts are loaded from a directory named ``fonts``, in a similar way to the
-handling of images and sounds. Fonts must be in ``.ttf`` format. For example::
+pgzero 从你运行的 python 文件所在目录的 ``fonts`` 目录加载字体，跟使用图片和声音的
+方式类似。字体必须是 ``.ttf`` 格式。比如::
 
     screen.draw.text("hello world", (100, 100), fontname="Viga", fontsize=32)
 
-Keyword arguments:
+关键字参数:
 
--  ``fontname``: filename of the font to draw. By default, use the system font.
--  ``fontsize``: size of the font to use, in pixels. Defaults to ``24``.
--  ``antialias``: whether to render with antialiasing. Defaults to ``True``.
+-  ``fontname``: 显示文本所用字体的名称。默认用系统字体。
+-  ``fontsize``: 字体大小，默认值是 ``24``.
+-  ``antialias``: 是否用抗锯齿模式显示文本，默认值 ``True``.
 
-Color and background color
+颜色和背景色
 ''''''''''''''''''''''''''
 
 ::
 
     screen.draw.text("hello world", (100, 100), color=(200, 200, 200), background="gray")
 
-Keyword arguments:
+关键字参数:
 
--  ``color``: foreground color to use. Defaults to ``white``.
--  ``background``: background color to use. Defaults to ``None``.
+-  ``color``: 文本的颜色，默认值是 ``white``.
+-  ``background``: 文本的底色，默认是``None``也就是没有底色.
 
-``color`` (as well as ``background``, ``ocolor``, ``scolor``, and
-``gcolor``) can be an (r, g, b) sequence such as ``(255,127,0)``, a
-``pygame.Color`` object, a color name such as ``"orange"``, an HTML hex
-color string such as ``"#FF7F00"``, or a string representing a hex color
-number such as ``"0xFF7F00"``.
+``color`` (以及 ``background``, ``ocolor``, ``scolor``, 和
+``gcolor``) 可以是类似于 ``(255,127,0)`` 的 (r, g, b) 序列（元组）。也可以
+用颜色的名字比如 ``"red"``，亦支持形如 ``"#FF7F00"` 的 HTML 格式的16进制颜色
+字符串，或者形如 ``"0xFF7F00"`` 表示十六进制颜色的字符串。
+
 
 ``background`` can also be ``None``, in which case the background is
 transparent. Unlike ``pygame.font.Font.render``, it's generally not more

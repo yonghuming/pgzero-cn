@@ -12,6 +12,8 @@ Pygame Zero可以让人们轻松无障碍创建游戏。
 它是出于教育目的开发的，所以老师们可以用pygame zero讲授基本的编程知识，同时又不需
 要解释复杂的Pygame的API和事件循环。
 
+欢迎关注公众号，少儿创客帮，或者加微信 ilangxm 加入 pgzero 讨论群。
+
 课程
 -------
 
@@ -47,4 +49,4 @@ Pygame Zero参考
     参与开源项目 <contributing>
     更新日志 <changelog>
 
-网易少儿编程郎郎老师提供翻译,微信ilangxm,有疑问可以添加好友备注pygame zero。
+
