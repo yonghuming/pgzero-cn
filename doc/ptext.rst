@@ -192,78 +192,78 @@ pgzero 从你运行的 python 文件所在目录的 ``fonts`` 目录加载字体
 
 -  ``gcolor``: 渐变色底端的值，默认是 ``None``.
 
-Specify ``gcolor`` to color the text with a vertical color gradient. The
-text's color will be ``color`` at the top and ``gcolor`` at the bottom.
-Positioning of the gradient stops and orientation of the gradient are
-hard coded and cannot be specified.
+gpzero 中文本的渐变色是从上到下的线性渐变，顶部是 ``color`` 参数指定的颜色，
+底部是 ``gcolor`` 指定的颜色。渐变色的起始和结束点以及渐变方向是写死的（硬
+编码），无法通过参数设置。
 
-Requries ``pygame.surfarray`` module, which uses numpy or Numeric
-library.
+依赖  ``pygame.surfarray`` ，模块，这个模块用到了 numpy 或者 其他数值库。
 
-Alpha transparency
+颜色透明度
 ''''''''''''''''''
 
 ::
 
     screen.draw.text("hello world", (100, 100), alpha=0.5)
 
-Keyword argument:
+关键字参数:
 
--  ``alpha``: alpha transparency value, between 0 and 1. Defaults to
-   ``1.0``.
+-  ``alpha``: 0 到 1 之间的透明度值. 默认为 ``1.0``.
 
 In order to maximize reuse of cached transparent surfaces, the value of
 ``alpha`` is rounded.
+为最大限度重用缓存的透明度面，``alpha`` 参数进行了四色五入。
 
-Requires ``pygame.surfarray`` module, which uses numpy or Numeric
-library.
+依赖  ``pygame.surfarray`` ，模块，这个模块用到了 numpy 或者 其他数值库。
 
-Anchored positioning
+锚点定位
 ''''''''''''''''''''
 
 ::
 
     screen.draw.text("hello world", (100, 100), anchor=(0.3,0.7))
 
-Keyword argument:
+关键字参数:
 
--  ``anchor``: a length-2 sequence of horizontal and vertical anchor
-   fractions. Defaults to ``(0.0, 0.0)``.
+-  ``anchor``: 指定了宽度和高度锚点系数的元组，长度为二，默认 ``(0.0, 0.0)``.
 
-``anchor`` specifies how the text is anchored to the given position,
-when no positioning keyword arguments are passed. The two values in
-``anchor`` can take arbitrary values between ``0.0`` and ``1.0``. An
-``anchor`` value of ``(0,0)``, the default, means that the given
-position is the top left of the text. A value of ``(1,1)`` means the
-given position is the bottom right of the text.
+``anchor`` 指定了文本相对于指定位置的锚点，如果没有指定位置相关的关键字
+参数，``anchor`` 参数的两个值可以是 ``0.0`` 到 ``1.0`` 之间的任意值。
+默认锚点值 ``(0,0)`` ，锚点位于文本的左上角。 ``(1,1)`` 意味着锚点在
+文本的右下角。
 
-Rotation
+译注：如果用 flash 的使用经历，在 flash 的元件中，需要设置中心点，这个
+中心点其实就是锚点。在 flash 中，元件的位置是中心点的位置，旋转、定位
+都是通过这个中心点定位的。
+
+旋转
 ''''''''
 
 ::
 
     screen.draw.text("hello world", (100, 100), angle=10)
 
-Keyword argument:
+关键字参数:
 
 -  ``angle``: counterclockwise rotation angle in degrees. Defaults to
    ``0``.
 
-Positioning of rotated surfaces is tricky. When drawing rotated text, the
-anchor point, the position you actually specify, remains fixed, and the text
-rotates around it. For instance, if you specify the top left of the text to be
-at ``(100, 100)`` with an angle of ``90``, then the Surface will actually be
-drawn so that its bottom left is at ``(100, 100)``.
+旋转面的定位很棘手。旋转文本时，锚点的位置固定不变，文本围绕锚点旋转。假设一个文本
+左上角的坐标是 ``(100, 100)``，旋转 ``90`` °，那么 文本所在的 Surface 绘制在左下角
+坐标为 ``(100, 100)`` 的位置。
 
-If you find that confusing, try specifying the center. If you anchor the
-text at the center, then the center will remain fixed, no matter how you
-rotate it.
+如果觉得不好理解，就把锚点定位在图形的中心。如果把锚点设置在中心，文本中心保持
+不这么，无论你怎么旋转。
 
 In order to maximize reuse of cached rotated surfaces, the value of
 ``angle`` is rounded to the nearest multiple of 3 degrees.
+为了最大程度的利用缓存的旋转的面，``angle`` 的值会取最近的3的倍数的值。
 
+译注：旋转操作很浪费资源，所以会缓存旋转的面，重复利用，类似于递归中用
+表查询法，提高递归的效率。假设，你不停的旋转文字，那么只需要计算 ``120``
+次旋转的结果，之后每次旋转过来后，查询并复用之前的面 ``surface`` 就行了
+无需重新计算，所以效率会很高。这里属于优化的技巧，pgzero 库的作者有心。
 
-Constrained text
+受限制的文本
 ''''''''''''''''
 
 ::
@@ -275,3 +275,12 @@ Constrained text
 will be chosen to be as large as possible while staying within the box.
 Other than ``fontsize`` and positional arguments, you can pass all the
 same keyword arguments to ``screen.draw.textbox`` as to ``screen.draw.text``.
+
+``screen.draw.textbox`` 需要2个参数：需要绘制的文本以及一个 ``pygame.Rect`` 
+或者 ``Rect` 对象。在盒子限定的范围内，文字会尽可能的大。除了指定位置和字体大小
+的参数不能用，``screen.draw.textbox`` 方法的参数跟 ``screen.draw.text`` 参数
+的用法相同。
+
+译注：这里有点自适应的意思。就是画个框，往里面写文字，类似于 ``ppt`` 中的文本框
+文字越多，字体越小。其实这个方法也可以指定一个最小的字体大小，如果计算字号小于
+指定的最小字号，那么文字应该超出这个框。
