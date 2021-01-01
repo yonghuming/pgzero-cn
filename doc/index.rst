@@ -18,11 +18,12 @@ Pygame Zero可以让人们轻松无障碍创建游戏。
 -------
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 3
 
     简介 <introduction>
     从Scratch到Python <from-scratch>
     用Pygame Zero学习编程 <learn-programming>
+    Pgzero内置模块 <builtins>
 
 
 .. This one is not yet complete
