@@ -51,24 +51,21 @@ pgzero 从你运行的 python 文件所在目录的 ``fonts`` 目录加载字体
 关键字参数:
 
 -  ``color``: 文本的颜色，默认值是 ``white``.
--  ``background``: 文本的底色，默认是``None``也就是没有底色.
+-  ``background``: 文本的底色，默认是 ``None`` 也就是没有底色.
 
 ``color`` (以及 ``background``, ``ocolor``, ``scolor``, 和
 ``gcolor``) 可以是类似于 ``(255,127,0)`` 的 (r, g, b) 序列（元组）。也可以
 用颜色的名字比如 ``"red"``，亦支持形如 ``"#FF7F00"` 的 HTML 格式的16进制颜色
 字符串，或者形如 ``"0xFF7F00"`` 表示十六进制颜色的字符串。
 
+如果 ``background`` 参数值设置为 ``None`` 那么，文字的底色就是透明的，但是用
+ ``screen.draw.text`` 设置文字底色的效率统称不如用 ``pygame.font.Font.render`` 
+ 方法。所以如非必要，请勿设置文字的底色。
 
-``background`` can also be ``None``, in which case the background is
-transparent. Unlike ``pygame.font.Font.render``, it's generally not more
-efficient to set a background color when calling ``screen.draw.text``. So only
-specify a background color if you actually want one.
+除了有轮廓和投影的不可见文本外，文字颜色不能指定透明度。 ``alpha`` 参数的介绍
+中有更多关于透明色的介绍。
 
-Colors with alpha transparency are not supported (except for the special
-case of invisible text with outlines or drop shadows - see below). See
-the ``alpha`` keyword argument for transparency.
-
-Positioning
+位置
 '''''''''''
 
 ::
@@ -76,7 +73,7 @@ Positioning
     screen.draw.text("hello world", centery=50, right=300)
     screen.draw.text("hello world", midtop=(400, 0))
 
-Keyword arguments:
+关键字参数:
 
 ::
 
@@ -85,17 +82,16 @@ Keyword arguments:
     midtop midleft midbottom midright
     center centerx centery
 
-Positioning keyword arguments behave like the corresponding properties
-of ``pygame.Rect``. Either specify two arguments, corresponding to the
-horizontal and vertical positions of the box, or a single argument that
-specifies both.
+位置相关的关键字参数的用法与 ``pygame.Rect`` 类似，你可以用两个参数分别设置
+文字（其实是文字的包围矩形）的位置，也可用用一个元组同时指定两个位置。
+译者：这里提供的方法很多，还是需要多练习下，才能够灵活的组合使用不同的关键字
+参数指定文字的位置。
 
-If the position is overspecified (e.g. both ``left`` and ``right`` are
-given), then extra specifications will be (arbitrarily but
-deterministically) discarded. For constrained text, see the section on
-``screen.draw.textbox`` below.
+如果用了多种方法重复设置了文字的位置，多余的关键字参数一定会被忽律，但是没有
+很明显的优先级。为了限定文本的位置，``screen.draw.textbox`` 小结中将会详细
+介绍。
 
-Word wrap
+单词换行
 '''''''''
 
 ::
@@ -103,115 +99,98 @@ Word wrap
     screen.draw.text("splitting\nlines", (100, 100))
     screen.draw.text("splitting lines", (100, 100), width=60)
 
-Keyword arguments:
+关键字参数:
 
--  ``width``: maximum width of the text to draw, in pixels. Defaults to
-   ``None``.
--  ``widthem``: maximum width of the text to draw, in font-based em
-   units. Defaults to ``None``.
--  ``lineheight``: vertical spacing between lines, in units of the
-   font's default line height. Defaults to ``1.0``.
+-  ``width``: 以像素为单位设置文本绘制的最大宽度，默认是 ``None``，没限制
+-  ``widthem``: 以基于字体的 em 为单位指定文本的最大绘制宽度，默认是 ``None``.
+-  ``lineheight``: 行距, 基于字体默认行高.默认值是 ``1.0``，单倍行距。
 
-``screen.draw.text`` will always wrap lines at newline (``\n``) characters. If
-``width`` or ``widthem`` is set, it will also try to wrap lines in order
-to keep each line shorter than the given width. The text is not
-guaranteed to be within the given width, because wrapping only occurs at
-space characters, so if a single word is too long to fit on a line, it
-will not be broken up. Outline and drop shadow are also not accounted
-for, so they may extend beyond the given width.
+``screen.draw.text`` 遇到换行符 (``\n``) 会换行，即便是设置了 ``width``
+或者 ``widthem`` ，为了确保每行长度小于指定的文本长度也会城市换行。文本长度可能会
+超过 ``width``或者 ``widthem`` ，因为换行总是在有空格的地方，如果一个一个
+单词很长，不能适应以后的长度，这个长单词不会换行。轮廓和投影文本也是如此。
+所以，文本的长度可能会超过给定的宽度。
 
-You can prevent wrapping on a particular space with non-breaking space
-characters (``\u00A0``).
+当然你可以用特殊的 Unicode 字符 (``\u00A0``) 代替空格来组织默认的换行行为。
 
-Text alignment
+文本对齐
 ''''''''''''''
 
 ::
 
     screen.draw.text("hello\nworld", bottomright=(500, 400), align="left")
 
-Keyword argument:
+关键字参数:
 
--  ``align``: horizontal positioning of lines with respect to each
-   other. Defaults to ``None``.
+-  ``align``: 水平对齐，默认为 ``None``.
 
-``align`` determines how lines are positioned horizontally with respect
-to each other, when more than one line is drawn. Valid values for
-``align`` are the strings ``"left"``, ``"center"``, or ``"right"``, a
-numerical value between ``0.0`` (for left alignment) and ``1.0`` (for
-right alignment), or ``None``.
+``align`` 参数的作用，设置绘制多行文本时行与行之间的对齐方式。``align`` 参数
+的有效值是字符串，``"left"``, ``"center"``, 或者 ``"right"``，0 到 1 之间的
+小数或者是 ``None`` 。
 
-If ``align`` is ``None``, the alignment is determined based on other arguments,
-in a way that should be what you want most of the time. It depends on any
-positioning arguments (``topleft``, ``centerx``, etc.), ``anchor``, and finally
-defaults to ``"left"``. I suggest you generally trust the default alignment,
-and only specify ``align`` if something doesn't look right.
 
-Outline
+如果 ``align`` 参数的值是 ``None`` ，文本对齐方式由其他参数决定，大部分时候可以
+满足你的需求。诸如 (``topleft``, ``centerx``, etc.), ``anchor`` 等参数都可能会
+影响对齐方式。建议使用默认对齐方式，如果对齐方式不符合你的预期，就用  ``align`` 
+参数明确的指定对齐方式。
+
+文字外轮廓
 '''''''
 
 ::
 
     screen.draw.text("hello world", (100, 100), owidth=1, ocolor="blue")
 
-Keyword arguments:
+外轮廓参数:
 
--  ``owidth``: outline thickness, in outline units. Defaults to
-   ``None``.
--  ``ocolor``: outline color. Defaults to ``"black"``.
+-  ``owidth``: 轮廓宽度，以轮廓宽度为标准，默认是 ``None``.
+-  ``ocolor``: 轮廓颜色，默认是 ``"black"``.
 
-The text will be outlined if ``owidth`` is specified. The outlining is a
-crude manual method, and will probably look bad at large sizes. The
-units of ``owidth`` are chosen so that ``1.0`` is a good typical value
-for outlines. Specifically, they're the font size divided by 24.
+如果指定了 ``owidth`` 参数的值，文本将会有外轮廓。如果 ``owidth`` 参数的
+值过大，效果看起来可能不会太好。``owidth`` 的单位是经过精心选择的，``1.0``
+是一个典型的比较合适的轮廓宽度只。需要特别注意的是，轮廓宽度的值是字体大小
+除以 24 。
 
-As a special case, setting ``color`` to a transparent value (e.g.
-``(0,0,0,0)``) while using outilnes will cause the text to be invisible,
-giving a hollow outline. (This feature is not compatible with
-``gcolor``.)
+如果 ``color`` 设置为透明，比如 (e.g.``(0,0,0,0)``)，同时设定了 ``ocolor``
+那么文字就是只有轮廓的镂空的文字，这个特性跟 ``gcolor`` 不兼容。 ``gcolor``
+的有效值跟 ``color`` 的有效值相同。
 
-Valid values for ``ocolor`` are the same as for ``color``.
-
-Drop shadow
+投影
 '''''''''''
 
 ::
 
     screen.draw.text("hello world", (100, 100), shadow=(1.0,1.0), scolor="blue")
 
-Keyword arguments:
+关键字参数:
 
--  ``shadow``: (x,y) values representing the drop shadow offset, in
-   shadow units. Defaults to ``None``.
--  ``scolor``: drop shadow color. Defaults to ``"black"``.
+-  ``shadow``: (x,y) 投影水平和竖直方向的便宜. 默认是 ``None`` 没有投影.
+-  ``scolor``: 投影的颜色，默认 ``"black"``.
 
-The text will have a drop shadow if ``shadow`` is specified. It must be
-set to a 2-element sequence representing the x and y offsets of the drop
-shadow, which can be positive, negative, or 0. For example,
-``shadow=(1.0,1.0)`` corresponds to a shadow down and to the right of
-the text. ``shadow=(0,-1.2)`` corresponds to a shadow higher than the
-text.
+如果指定了 ``shadow`` 参数的值，那么文本会有一个投影，值必须是只有2个元素的
+序列类型（一般是元组），用来指定投影在水平和竖直方向的偏移，值可以是整数，负数。
+比如 ``shadow=(1.0,1.0)`` 对应的文本右下角的投影， ``shadow=(0,-1.2)`` 
+是文本上方的投影。
 
-The units of ``shadow`` are chosen so that ``1.0`` is a good typical
-value for the offset. Specifically, they're the font size divided by 18.
+投影的单位也是一个经验值，投影的单位是字体大小除以 18。跟轮廓类似，假设字体
+大小是 72，那么投影的单位就是 72/18=4 。投影和轮廓都是一个相对的值，不是
+像素值。
 
-As a special case, setting ``color`` to a transparent value (e.g.
-``(0,0,0,0)``) while using drop shadow will cause the text to be
-invisible, giving a hollow shadow. (This feature is not compatible with
-``gcolor``.)
+如果 ``color`` 指定的是透明色，指定了 ``shadow``，那么文本就是中空带投影的
+文本。
 
-Valid values for ``scolor`` are the same as for ``color``.
+投影参数  ``scolor`` 的有效值跟轮廓颜色值和 ``color`` 颜色有效值一样。
 
-Gradient color
+渐变色
 ''''''''''''''
 
 ::
 
     screen.draw.text("hello world", (100, 100), color="black", gcolor="green")
 
-Keyword argument:
+关键字参数:
 
--  ``gcolor``: Lower gradient stop color. Defaults to ``None``.
+-  ``gcolor``: 渐变色底端的值，默认是 ``None``.
 
 Specify ``gcolor`` to color the text with a vertical color gradient. The
 text's color will be ``color`` at the top and ``gcolor`` at the bottom.
